@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TableRow>
+
+        <Button
+            android:id="@+id/seoulGyeongSelBtn"
+            android:text="서울/경기"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="10dp" />
+
+        <Button
+            android:id="@+id/incheonSelBtn"
+            android:text="인천"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"/>
+
+        <Button
+            android:id="@+id/busanSelBtn"
+            android:text="부산"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"/>
+
+    </TableRow>
+
+    <TableRow>
+
+        <Button
+            android:id="@+id/daejeonSelBtn"
+            android:text="대전"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"/>
+
+        <Button
+            android:id="@+id/daeguSelBtn"
+            android:text="대구"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"/>
+
+        <Button
+            android:id="@+id/gwangjuSelBtn"
+            android:text="광주"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"/>
+
+    </TableRow>
+
+</TableLayout>
