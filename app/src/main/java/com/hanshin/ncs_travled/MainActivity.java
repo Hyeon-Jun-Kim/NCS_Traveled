@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     ListView listview ;
     HT_ListViewAdapter adapter;
     TabLayout tabLayout;
-    
+
     public static final int sub = 1001; /*다른 액티비티를 띄우기 위한 요청코드(상수)*/
 
     @Override

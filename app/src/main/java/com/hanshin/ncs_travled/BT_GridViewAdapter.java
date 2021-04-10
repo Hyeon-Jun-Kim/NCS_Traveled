@@ -49,10 +49,6 @@ public class BT_GridViewAdapter extends BaseAdapter {
     public View getView(final int position, View convertView, final ViewGroup parent) { final int pos = position;
         final Context context = parent.getContext();
 
-
-
-
-
         // "listview_item" Layout을 inflate하여 convertView 참조 획득.
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

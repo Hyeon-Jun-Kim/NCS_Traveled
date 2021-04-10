@@ -47,7 +47,7 @@ public class BT_CreateActivity extends Activity {
         btnPhotoBookInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LinearLayout dialogView = (LinearLayout) View.inflate(BT_CreateActivity.this, R.layout.dialog_photobookinfo, null);
+                LinearLayout dialogView = (LinearLayout) View.inflate(BT_CreateActivity.this, R.layout.bt_dialog_photobookinfo, null);
                 AlertDialog.Builder dlg = new AlertDialog.Builder(BT_CreateActivity.this);
                 dlg.setTitle(" 포토북 정보");
                 dlg.setView(dialogView);
@@ -69,7 +69,7 @@ public class BT_CreateActivity extends Activity {
         btnPhotoBookCover.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LinearLayout dialogView = (LinearLayout) View.inflate(BT_CreateActivity.this, R.layout.dialog_photobookcover, null);
+                LinearLayout dialogView = (LinearLayout) View.inflate(BT_CreateActivity.this, R.layout.bt_dialog_photobookcover, null);
                 AlertDialog.Builder dlg = new AlertDialog.Builder(BT_CreateActivity.this);
                 dlg.setTitle(" 포토북 표지");
                 dlg.setView(dialogView);
