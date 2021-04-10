@@ -3,6 +3,7 @@ package com.hanshin.ncs_travled;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
@@ -67,7 +68,8 @@ public class MainActivity extends AppCompatActivity {
         mapSuwonBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+            Intent intent = new Intent(getApplicationContext(),BT_CreateActivity.class);
+            startActivity(intent);
             }
         });
         mapSuYoBtn.setOnClickListener(new View.OnClickListener() {
