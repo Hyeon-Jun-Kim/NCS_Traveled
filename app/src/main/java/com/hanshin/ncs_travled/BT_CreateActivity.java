@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,15 +20,52 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.tabs.TabLayout;
+
 public class BT_CreateActivity extends Activity {
     ArrayList<Uri> imageList = new ArrayList<Uri>();
     ArrayList<Uri> videoList = new ArrayList<Uri>();
     BT_GridViewAdapter adapter;
+    TabLayout tabLayout;
+
+    public static final int sub = 1001; /*다른 액티비티를 띄우기 위한 요청코드(상수)*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bt_create);
+
+        //탭
+        tabLayout = findViewById(R.id.Htabs);
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                // TODO : tab의 상태가 선택 상태로 변경
+
+                int pos = tab.getPosition() ;
+                if (pos == 0) { // 첫 번째 탭 선택.
+                    Toast.makeText(getApplicationContext(),"탭1",Toast.LENGTH_SHORT).show();
+                }
+                else if (pos == 1) { // 두 번째 탭 선택.
+                    Intent intent = new Intent(getApplicationContext(),BT_CreateActivity.class);
+                    startActivityForResult(intent,sub);
+                }
+                else if (pos == 2) { // 세 번째 탭 선택.
+                    Toast.makeText(getApplicationContext(),"탭3",Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+                // TODO : tab의 상태가 선택되지 않음으로 변경.
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+                // TODO : 이미 선택된 tab이 다시 선택
+            }
+        });
 
         //메인페이지 버튼의정
         Button btnPhotoBookInfo = findViewById(R.id.btnPhotoBookInfo);

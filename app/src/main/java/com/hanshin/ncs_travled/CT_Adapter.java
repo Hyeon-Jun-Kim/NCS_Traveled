@@ -9,9 +9,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-public class HT_ListViewAdapter extends BaseAdapter{
+
+class CT_Adapter extends BaseAdapter{
     // Adapter에 추가된 데이터를 저장하기 위한 ArrayList
-    private ArrayList<HT_Listview_Item> HT_Listview_Item = new ArrayList<HT_Listview_Item>() ;
+    private ArrayList<CT_Item> CT_Item = new ArrayList<CT_Item>() ;
 
     // ListViewAdapter의 생성자
     public void ListViewAdapter() {
@@ -21,7 +22,7 @@ public class HT_ListViewAdapter extends BaseAdapter{
     // Adapter에 사용되는 데이터의 개수를 리턴. : 필수 구현
     @Override
     public int getCount() {
-        return HT_Listview_Item.size() ;
+        return CT_Item.size() ;
     }
 
     // position에 위치한 데이터를 화면에 출력하는데 사용될 View를 리턴. : 필수 구현
@@ -33,24 +34,20 @@ public class HT_ListViewAdapter extends BaseAdapter{
         // "listview_item" Layout을 inflate하여 convertView 참조 획득.
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.ht_listview_item, parent, false);
+            convertView = inflater.inflate(R.layout.ct_item, parent, false);
         }
 
         // 화면에 표시될 View(Layout이 inflate된)으로부터 위젯에 대한 참조 획득
-        ImageView iconImageView = (ImageView) convertView.findViewById(R.id.ht_imageView1) ;
-        TextView titleTextView = (TextView) convertView.findViewById(R.id.ht_title) ;
-        TextView placeTextView = (TextView) convertView.findViewById(R.id.ht_place) ;
-        TextView memberTextView = (TextView) convertView.findViewById(R.id.ht_member) ;
-        TextView dateTextView = (TextView) convertView.findViewById(R.id.ht_date) ;
+        ImageView iconImageView = (ImageView) convertView.findViewById(R.id.ct_imageView) ;
+        TextView titleTextView = (TextView) convertView.findViewById(R.id.ct_title) ;
+        TextView dateTextView = (TextView) convertView.findViewById(R.id.ct_date) ;
 
         // Data Set(listViewItemList)에서 position에 위치한 데이터 참조 획득
-        HT_Listview_Item listViewItem = HT_Listview_Item.get(position);
+        CT_Item listViewItem = CT_Item.get(position);
 
         // 아이템 내 각 위젯에 데이터 반영
         iconImageView.setImageDrawable(listViewItem.getCover());
         titleTextView.setText(listViewItem.getTitle());
-        placeTextView.setText(listViewItem.getPlace());
-        memberTextView.setText(listViewItem.getMember());
         dateTextView.setText(listViewItem.getDate());
 
         return convertView;
@@ -65,19 +62,17 @@ public class HT_ListViewAdapter extends BaseAdapter{
     // 지정한 위치(position)에 있는 데이터 리턴 : 필수 구현
     @Override
     public Object getItem(int position) {
-        return HT_Listview_Item.get(position) ;
+        return CT_Item.get(position) ;
     }
 
     // 아이템 데이터 추가를 위한 함수. 개발자가 원하는대로 작성 가능.
-    public void addItem(Drawable cover, String title, String place, String member, String date) {
-        HT_Listview_Item item = new HT_Listview_Item();
+    public void addItem(Drawable cover, String title, String date) {
+        CT_Item item = new CT_Item();
 
         item.setCover(cover);
         item.setTitle(title);
-        item.setPlace(place);
-        item.setMember(member);
         item.setDate(date);
 
-        HT_Listview_Item.add(item);
+        CT_Item.add(item);
     }
 }

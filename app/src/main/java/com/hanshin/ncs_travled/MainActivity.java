@@ -44,7 +44,8 @@ public class MainActivity extends AppCompatActivity {
                     startActivityForResult(intent,sub);
                 }
                 else if (pos == 2) { // 세 번째 탭 선택.
-                    Toast.makeText(getApplicationContext(),"탭3",Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(),CT_Activity.class);
+                    startActivityForResult(intent,sub);
                 }
             }
 
@@ -111,7 +112,8 @@ public class MainActivity extends AppCompatActivity {
         mapSuYoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(getApplicationContext(),CT_Activity.class);
+                startActivity(intent);
             }
         });
 
@@ -119,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
 
         adapter = new HT_ListViewAdapter();
 
-        listview = findViewById(R.id.listview1);
+        listview = findViewById(R.id.ht_listview);
         listview.setAdapter(adapter);
 
         adapter.addItem(ContextCompat.getDrawable(this, R.drawable.cover_spring),"Book1","수원","AAA","2020/03/15");

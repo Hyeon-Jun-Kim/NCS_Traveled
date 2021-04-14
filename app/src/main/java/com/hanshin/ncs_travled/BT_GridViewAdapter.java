@@ -20,8 +20,6 @@ public class BT_GridViewAdapter extends BaseAdapter {
     ArrayList<Uri> imageArrayList; // 갤러리에서 가져온 이미지 경로를 저장한 리스트
     ArrayList<Uri> videoArrayList; //갤러리에서 가져온 비디오 경로를 저장한 리스트
 
-
-
     public BT_GridViewAdapter(Context c, ArrayList<Uri> imageList, ArrayList<Uri> videoList){
         context = c;
         imageArrayList = imageList;
