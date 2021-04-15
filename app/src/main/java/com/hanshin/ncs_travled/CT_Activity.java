@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -15,6 +16,7 @@ public class CT_Activity extends Activity {
 
     CT_Adapter listAdapter;
     RecyclerView recyclerView;
+    CT_recyclerAdapter recyclerAdapter;
     ListView listview;
     Button writeBtn;
 
@@ -23,10 +25,12 @@ public class CT_Activity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ct_list);
 
-        listAdapter = new CT_Adapter();
+        ///////////// 관리자 게시판
+        init();
+        getData();
 
-        recyclerView = findViewById(R.id.ct_recycler);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        ///////////// 사용자 게시판 
+        listAdapter = new CT_Adapter();
 
         listview = findViewById(R.id.ct_listview);
         listview.setAdapter(listAdapter);
@@ -44,6 +48,27 @@ public class CT_Activity extends Activity {
             }
         });
 
+    }
+
+    private void init() {
+        recyclerView = findViewById(R.id.ct_recycler);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyclerView.setLayoutManager(linearLayoutManager);
+
+        recyclerAdapter = new CT_recyclerAdapter();
+        recyclerView.setAdapter(recyclerAdapter);
+    }
+    private void getData() {
+        CT_recyclerItem recyclerItem = new CT_recyclerItem(R.drawable.cover_spring,"list1","2020/02/12");
+        recyclerAdapter.addItem(recyclerItem);
+        recyclerItem = new CT_recyclerItem(R.drawable.cover_autumn,"list2","2020/02/12");
+        recyclerAdapter.addItem(recyclerItem);
+        recyclerItem = new CT_recyclerItem(R.drawable.cover_summer,"list3","2020/02/12");
+        recyclerAdapter.addItem(recyclerItem);
+        recyclerItem = new CT_recyclerItem(R.drawable.cover_winter,"list4","2020/02/12");
+        recyclerAdapter.addItem(recyclerItem);
     }
 
 }
