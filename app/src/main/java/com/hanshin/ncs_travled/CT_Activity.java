@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -25,11 +24,11 @@ public class CT_Activity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ct_list);
 
-        ///////////// 관리자 게시판
+        ///////////// 관리자 게시판 (리사이클러 뷰)
         init();
         getData();
 
-        ///////////// 사용자 게시판 
+        ///////////// 사용자 게시판 (리스트 뷰)
         listAdapter = new CT_Adapter();
 
         listview = findViewById(R.id.ct_listview);
@@ -50,8 +49,11 @@ public class CT_Activity extends Activity {
 
     }
 
+    //리사이클러뷰 설정
     private void init() {
         recyclerView = findViewById(R.id.ct_recycler);
+
+        recyclerView.addItemDecoration(new CT_recyclerDecoration(30)); // 아이템 간격
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -60,6 +62,8 @@ public class CT_Activity extends Activity {
         recyclerAdapter = new CT_recyclerAdapter();
         recyclerView.setAdapter(recyclerAdapter);
     }
+
+    // 리사이클러뷰 아이템 추가
     private void getData() {
         CT_recyclerItem recyclerItem = new CT_recyclerItem(R.drawable.cover_spring,"list1","2020/02/12");
         recyclerAdapter.addItem(recyclerItem);
