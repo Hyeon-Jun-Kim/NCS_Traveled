@@ -37,11 +37,11 @@ public class HT_ListViewAdapter extends BaseAdapter{
         }
 
         // 화면에 표시될 View(Layout이 inflate된)으로부터 위젯에 대한 참조 획득
-        ImageView iconImageView = (ImageView) convertView.findViewById(R.id.ht_imageView1) ;
-        TextView titleTextView = (TextView) convertView.findViewById(R.id.ht_title) ;
-        TextView placeTextView = (TextView) convertView.findViewById(R.id.ht_place) ;
-        TextView memberTextView = (TextView) convertView.findViewById(R.id.ht_member) ;
-        TextView dateTextView = (TextView) convertView.findViewById(R.id.ht_date) ;
+        ImageView iconImageView = (ImageView) convertView.findViewById(R.id.imageView1) ;
+        TextView titleTextView = (TextView) convertView.findViewById(R.id.title) ;
+        TextView placeTextView = (TextView) convertView.findViewById(R.id.place) ;
+        TextView memberTextView = (TextView) convertView.findViewById(R.id.member) ;
+        TextView dateTextView = (TextView) convertView.findViewById(R.id.date) ;
 
         // Data Set(listViewItemList)에서 position에 위치한 데이터 참조 획득
         HT_Listview_Item listViewItem = HT_Listview_Item.get(position);

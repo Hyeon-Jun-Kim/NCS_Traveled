@@ -24,11 +24,11 @@ public class CT_Activity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ct_list);
 
-        ///////////// 관리자 게시판 (리사이클러 뷰)
+        ///////////// 관리자 게시판
         init();
         getData();
 
-        ///////////// 사용자 게시판 (리스트 뷰)
+        ///////////// 사용자 게시판 
         listAdapter = new CT_Adapter();
 
         listview = findViewById(R.id.ct_listview);
@@ -49,7 +49,6 @@ public class CT_Activity extends Activity {
 
     }
 
-    //리사이클러뷰 설정
     private void init() {
         recyclerView = findViewById(R.id.ct_recycler);
 
@@ -62,8 +61,6 @@ public class CT_Activity extends Activity {
         recyclerAdapter = new CT_recyclerAdapter();
         recyclerView.setAdapter(recyclerAdapter);
     }
-
-    // 리사이클러뷰 아이템 추가
     private void getData() {
         CT_recyclerItem recyclerItem = new CT_recyclerItem(R.drawable.cover_spring,"list1","2020/02/12");
         recyclerAdapter.addItem(recyclerItem);
@@ -73,7 +70,6 @@ public class CT_Activity extends Activity {
         recyclerAdapter.addItem(recyclerItem);
         recyclerItem = new CT_recyclerItem(R.drawable.cover_winter,"list4","2020/02/12");
         recyclerAdapter.addItem(recyclerItem);
-
     }
 
 }

@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
-    android:layout_width="match_parent"
+    android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="100dp">
 
     <ImageView
-        android:id="@+id/ht_imageView1"
+        android:id="@+id/imageView1"
         android:layout_width="18dp"
         android:layout_height="match_parent"
         android:layout_marginLeft="10dp"
@@ -22,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Title"
-            android:id="@+id/ht_title"
+            android:id="@+id/title"
             android:textSize="24dp"
             android:textColor="#000000"
             android:gravity="center_vertical"
@@ -32,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Place"
-            android:id="@+id/ht_place"
+            android:id="@+id/place"
             android:textSize="16dp"
             android:textColor="#666666"
             android:layout_weight="1" />
@@ -40,13 +39,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Member"
-            android:id="@+id/ht_member"
+            android:id="@+id/member"
             android:textSize="16dp"
             android:textColor="#666666"
             android:layout_weight="1" />
 
         <TextView
-            android:id="@+id/ht_date"
+            android:id="@+id/date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"

@@ -74,7 +74,8 @@ public class BT_CreateActivity extends Activity {
     TabLayout tabLayout;
     public static final int sub = 1001; /*다른 액티비티를 띄우기 위한 요청코드(상수)*/
 
-    BT_Create_Item bt_item  = new BT_Create_Item(); ; //파이어베이스 스토어에 등록할 데이터 클래스
+    BT_Create_Item bt_item = new BT_Create_Item();
+    ; //파이어베이스 스토어에 등록할 데이터 클래스
 
 //    private View ButtonPhotoBookTravelArea;
 //    private View ButtonPhotoBookTravelCity;
@@ -98,8 +99,8 @@ public class BT_CreateActivity extends Activity {
                 } else if (pos == 1) { // 두 번째 탭 선택.
                     Toast.makeText(getApplicationContext(), "탭2", Toast.LENGTH_SHORT).show();
                 } else if (pos == 2) { // 세 번째 탭 선택.
-                    Intent intent = new Intent(getApplicationContext(),CT_Activity.class);
-                    startActivityForResult(intent,sub);
+                    Intent intent = new Intent(getApplicationContext(), CT_Activity.class);
+                    startActivityForResult(intent, sub);
                 }
             }
 
@@ -128,7 +129,6 @@ public class BT_CreateActivity extends Activity {
         gridView.setAdapter(adapter);
 
 
-
         //포토북생성페이지에 정보버튼안에 대화상자 속성 정의
         LinearLayout dialogView;
         //포토북생성페이지에 정보 버튼을 클릭할 때 이벤트 작성
@@ -144,11 +144,11 @@ public class BT_CreateActivity extends Activity {
                 dlg.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        final EditText EditPhotoBookTitle =  dialogView.findViewById(R.id.EditPhotoBookTitle);
+                        final EditText EditPhotoBookTitle = dialogView.findViewById(R.id.EditPhotoBookTitle);
                         final EditText EditPhotoBookTravelDate = dialogView.findViewById(R.id.EditPhotoBookTravelDate);
                         final EditText EditPhotoBookTravelDate2 = dialogView.findViewById(R.id.EditPhotoBookTravelDate2);
                         final EditText EditPhotoBookTravelMember = dialogView.findViewById(R.id.EditPhotoBookTravelMember);
-                        final EditText EditPhotoBookTravelArea =dialogView.findViewById(R.id.EditPhotoBookTravelArea);
+                        final EditText EditPhotoBookTravelArea = dialogView.findViewById(R.id.EditPhotoBookTravelArea);
                         final EditText EditPhotoBookTravelCity = dialogView.findViewById(R.id.EditPhotoBookTravelCity);
 
                         bt_item.setPhotoBookTitle(EditPhotoBookTitle.getText().toString());
@@ -185,14 +185,18 @@ public class BT_CreateActivity extends Activity {
                         //확인 버튼 누를시 이벤트 작성하기
 
                         CheckBox bookCover1 = dialogView.findViewById(R.id.bookCover1);
-                        CheckBox bookCover2= dialogView.findViewById(R.id.bookCover2);
+                        CheckBox bookCover2 = dialogView.findViewById(R.id.bookCover2);
                         CheckBox bookCover3 = dialogView.findViewById(R.id.bookCover3);
                         CheckBox bookCover4 = dialogView.findViewById(R.id.bookCover4);
 
-                        if(bookCover1.isChecked()) bt_item.setPhotoBookTravelCover(ContextCompat.getDrawable(BT_CreateActivity.this, R.drawable.cover_spring));
-                        if(bookCover2.isChecked()) bt_item.setPhotoBookTravelCover(ContextCompat.getDrawable(BT_CreateActivity.this, R.drawable.cover_summer));
-                        if(bookCover3.isChecked()) bt_item.setPhotoBookTravelCover(ContextCompat.getDrawable(BT_CreateActivity.this, R.drawable.cover_autumn));
-                        if(bookCover4.isChecked()) bt_item.setPhotoBookTravelCover(ContextCompat.getDrawable(BT_CreateActivity.this, R.drawable.cover_winter));
+                        if (bookCover1.isChecked())
+                            bt_item.setPhotoBookTravelCover(ContextCompat.getDrawable(BT_CreateActivity.this, R.drawable.cover_spring));
+                        if (bookCover2.isChecked())
+                            bt_item.setPhotoBookTravelCover(ContextCompat.getDrawable(BT_CreateActivity.this, R.drawable.cover_summer));
+                        if (bookCover3.isChecked())
+                            bt_item.setPhotoBookTravelCover(ContextCompat.getDrawable(BT_CreateActivity.this, R.drawable.cover_autumn));
+                        if (bookCover4.isChecked())
+                            bt_item.setPhotoBookTravelCover(ContextCompat.getDrawable(BT_CreateActivity.this, R.drawable.cover_winter));
 
                     }
                 });
@@ -205,7 +209,7 @@ public class BT_CreateActivity extends Activity {
             @Override
             public void onClick(View v) {
                 //BT_GridViewAdapter의 add메서드 실행
-               
+
                 Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 intent.setType("image/* video/*");
                 startActivityForResult(intent, 1000);
@@ -242,7 +246,6 @@ public class BT_CreateActivity extends Activity {
                 String Datename = formatter.format(now);
 
 
-
                 //이미지 리스트를 파이어베이스에 업로드
                 for (int i = 0; i < imageList.size(); i++) {   ///     경기도수원/ 경기도
                     StorageReference imageRef = storageRef.child(bt_item.getPhotoBookTravelArea() + "/" + bt_item.getPhotoBookTravelCity() + "/" + bt_item.getPhotoBookTitle() + "/" + Datename + "-image" + i); //파이어베이스에 업로드할 이미지 이름 지정
@@ -265,8 +268,8 @@ public class BT_CreateActivity extends Activity {
                 }
                 //비디오 리스트를 파이어베이스에 업로드
                 for (int i = 0; i < videoList.size(); i++) {
-                    StorageReference videoRef = storageRef.child(bt_item.getPhotoBookTravelArea()  + bt_item.getPhotoBookTravelCity() + "/" + bt_item.getPhotoBookTitle()  + "/" + Datename + "-video" + i); //파이어베이스에 업로드할 비디오 이름 지정
-                    Uri file =Uri.parse(String.valueOf(videoList.get(i)));// 비디오리스트에서 내가 원하는 값을 집어넣음.
+                    StorageReference videoRef = storageRef.child(bt_item.getPhotoBookTravelArea() + bt_item.getPhotoBookTravelCity() + "/" + bt_item.getPhotoBookTitle() + "/" + Datename + "-video" + i); //파이어베이스에 업로드할 비디오 이름 지정
+                    Uri file = Uri.parse(String.valueOf(videoList.get(i)));// 비디오리스트에서 내가 원하는 값을 집어넣음.
                     UploadTask uploadTask = videoRef.putFile(file);
                     uploadTask.addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -305,7 +308,7 @@ public class BT_CreateActivity extends Activity {
                 //파이어베이스 스토어 업로드 (데이터)
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-                Map<String , Object> member = new HashMap<>();
+                Map<String, Object> member = new HashMap<>();
                 member.put("title", bt_item.getPhotoBookTitle());
                 member.put("date", bt_item.getPhotoBookTravelDate());
                 member.put("date2", bt_item.getPhotoBookTravelDate2());
@@ -315,7 +318,7 @@ public class BT_CreateActivity extends Activity {
                 member.put("cover", bt_item.getPhotoBookTravelCover().toString());
 
 
-                db.collection( bt_item.getPhotoBookTravelArea()+bt_item.getPhotoBookTravelCity()).document(bt_item.getPhotoBookTitle()).set(member).addOnSuccessListener(new OnSuccessListener<Void>() {
+                db.collection(bt_item.getPhotoBookTravelArea() + bt_item.getPhotoBookTravelCity()).document(bt_item.getPhotoBookTitle()).set(member).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Toast.makeText(BT_CreateActivity.this, "데이터 업로드 성공", Toast.LENGTH_SHORT).show();
@@ -326,7 +329,6 @@ public class BT_CreateActivity extends Activity {
                         Toast.makeText(BT_CreateActivity.this, "데이터 업로드 실패", Toast.LENGTH_SHORT).show();
                     }
                 });
-
 
 
             }
