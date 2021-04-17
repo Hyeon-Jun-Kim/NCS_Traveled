@@ -73,6 +73,7 @@ public class CT_Activity extends Activity {
         recyclerAdapter.addItem(recyclerItem);
         recyclerItem = new CT_recyclerItem(R.drawable.cover_winter,"list4","2020/02/12");
         recyclerAdapter.addItem(recyclerItem);
+
     }
 
 }
