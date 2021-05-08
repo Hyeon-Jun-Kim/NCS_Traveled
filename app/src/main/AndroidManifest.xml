@@ -18,6 +18,7 @@
         </activity>
         <activity android:name=".BT_CreateActivity" android:label="Book"> </activity>
         <activity android:name=".CT_Activity" android:label="Community"> </activity>
+        <activity android:name=".HT_CallBookList" android:label="CallBooks"> </activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

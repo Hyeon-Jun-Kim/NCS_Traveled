@@ -21,7 +21,7 @@ public class MainActivity extends Activity {
 
     ConstraintLayout const1,const2,const3,const4,const5,const6;
     Button selArea[] = new Button[6] ;
-    Button C1_mapGoyangnBtn, C1_mapBuGwangBtn, C1_mapSeoulBtn, C1_mapAnAnBtn, C1_mapSuwonBtn, C1_mapSuYoBtn;
+    Button selBooklist[] = new Button[38];
 
     ListView listview;
     HT_ListViewAdapter adapter;
@@ -65,6 +65,64 @@ public class MainActivity extends Activity {
 
         });
 
+        selBooklist[0] = findViewById(R.id.homeMap_const1_ananBtn);
+        selBooklist[1] = findViewById(R.id.homeMap_const1_bugwangBtn);
+        selBooklist[2] = findViewById(R.id.homeMap_const1_goyangBtn);
+        selBooklist[3] = findViewById(R.id.homeMap_const1_seoulBtn);
+        selBooklist[4] = findViewById(R.id.homeMap_const1_suwonBtn);
+        selBooklist[5] = findViewById(R.id.homeMap_const1_suyoBtn);
+        selBooklist[6] = findViewById(R.id.homeMap_const2_gaebuBtn);
+        selBooklist[7] = findViewById(R.id.homeMap_const2_gangBtn);
+        selBooklist[8] = findViewById(R.id.homeMap_const2_jungnamBtn);
+        selBooklist[9] = findViewById(R.id.homeMap_const2_seodongBtn);
+        selBooklist[10] = findViewById(R.id.homeMap_const2_wungBtn);
+        selBooklist[11] = findViewById(R.id.homeMap_const2_younnamBtn);
+        selBooklist[12] = findViewById(R.id.homeMap_const3_bugumBtn);
+        selBooklist[13] = findViewById(R.id.homeMap_const3_bujinBtn);
+        selBooklist[14] = findViewById(R.id.homeMap_const3_cenBtn);
+        selBooklist[15] = findViewById(R.id.homeMap_const3_haeBtn);
+        selBooklist[16] = findViewById(R.id.homeMap_const3_namseoBtn);
+        selBooklist[17] = findViewById(R.id.homeMap_const3_sayonaBtn2);
+        selBooklist[18] = findViewById(R.id.homeMap_const3_seodongBtn);
+        selBooklist[19] = findViewById(R.id.homeMap_const4_daeBtn);
+        selBooklist[20] = findViewById(R.id.homeMap_const4_daejungBtn2);
+        selBooklist[21] = findViewById(R.id.homeMap_const4_dongBtn);
+        selBooklist[22] = findViewById(R.id.homeMap_const4_dunseoBtn);
+        selBooklist[23] = findViewById(R.id.homeMap_const4_eunBtn);
+        selBooklist[24] = findViewById(R.id.homeMap_const4_youguBtn);
+        selBooklist[25] = findViewById(R.id.homeMap_const5_bugwangBtn);
+        selBooklist[26] = findViewById(R.id.homeMap_const5_dalBtn);
+        selBooklist[27] = findViewById(R.id.homeMap_const5_dalseoBtn);
+        selBooklist[28] = findViewById(R.id.homeMap_const5_dongBtn);
+        selBooklist[29] = findViewById(R.id.homeMap_const5_jundoBtn2);
+        selBooklist[30] = findViewById(R.id.homeMap_const5_seobuBtn);
+        selBooklist[31] = findViewById(R.id.homeMap_const5_susuBtn);
+        selBooklist[32] = findViewById(R.id.homeMap_const6_bujunBtn);
+        selBooklist[33] = findViewById(R.id.homeMap_const6_chudoBtn);
+        selBooklist[34] = findViewById(R.id.homeMap_const6_dongBtn);
+        selBooklist[35] = findViewById(R.id.homeMap_const6_gwangBtn);
+        selBooklist[36] = findViewById(R.id.homeMap_const6_namBtn);
+        selBooklist[37] = findViewById(R.id.homeMap_const6_seosaBtn);
+
+        for(int i=0;i<selBooklist.length;i++){ // 각 지역별 포토북 리스트 불러오는 리스너 등록
+            final int num = i;
+            selBooklist[i].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getApplicationContext(), HT_CallBookList.class);
+                    intent.putExtra("nameOfArea",selBooklist[num].getText());
+                    startActivityForResult(intent, sub);
+                    Toast.makeText(getApplicationContext(), selBooklist[num].getText(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
+        const1 = findViewById(R.id.const1);
+        const2 = findViewById(R.id.const2);
+        const3 = findViewById(R.id.const3);
+        const4 = findViewById(R.id.const4);
+        const5 = findViewById(R.id.const5);
+        const6 = findViewById(R.id.const6);
         selArea[0] = findViewById(R.id.homeMap_const1_selAreaBtn);
         selArea[1] = findViewById(R.id.homeMap_const2_selAreaBtn);
         selArea[2] = findViewById(R.id.homeMap_const3_selAreaBtn);
@@ -137,65 +195,9 @@ public class MainActivity extends Activity {
             });
         }
 
-        const1 = findViewById(R.id.const1);
-        C1_mapGoyangnBtn = findViewById(R.id.homeMap_const1_goyangBtn);
-        C1_mapBuGwangBtn = findViewById(R.id.homeMap_const1_bugwangBtn);
-        C1_mapSeoulBtn = findViewById(R.id.homeMap_const1_seoulBtn);
-        C1_mapAnAnBtn = findViewById(R.id.homeMap_const1_ananBtn);
-        C1_mapSuwonBtn = findViewById(R.id.homeMap_const1_suwonBtn);
-        C1_mapSuYoBtn = findViewById(R.id.homeMap_const1_suyoBtn);
-
-        C1_mapGoyangnBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "버튼테스트", Toast.LENGTH_SHORT).show();
-            }
-        });
-        C1_mapBuGwangBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-        C1_mapSeoulBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-        C1_mapAnAnBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-        C1_mapSuwonBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-        C1_mapSuYoBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        const2 = findViewById(R.id.const2);
-
-        const3 = findViewById(R.id.const3);
-
-        const4 = findViewById(R.id.const4);
-
-        const5 = findViewById(R.id.const5);
-
-        const6 = findViewById(R.id.const6);
-
         //////////////////////////////////////////하단 포토북//////////////////////////////////////////
 
         adapter = new HT_ListViewAdapter();
-
         listview = findViewById(R.id.listview1);
         listview.setAdapter(adapter);
 
