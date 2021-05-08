@@ -9,6 +9,10 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 
 import androidx.core.content.ContextCompat;
 
@@ -17,11 +21,27 @@ public class HT_CallBookList extends Activity {
     Button closeBtn;
     HT_ListViewAdapter adapter;
     ListView books_lv;
-    TextView area;
+    TextView areaTv;
+
+    //구글로그인 회원정보
+    String loginName ="-";
+    String loginEmail = "-";
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ht_call_booklist);
+
+        //로그인한 회원정보를 가져오는 변수
+        GoogleSignInAccount signInAccount = GoogleSignIn.getLastSignedInAccount(this);
+        if(signInAccount != null){
+            //회원정보 이름
+            loginName = signInAccount.getDisplayName();
+            //회원정보 이메일
+            loginEmail = signInAccount.getEmail();
+            Toast.makeText(
+                    HT_CallBookList.this, loginName+" "+loginEmail, Toast.LENGTH_SHORT).show();
+        }
 
         closeBtn = findViewById(R.id.close_btn);
         closeBtn.setOnClickListener(new View.OnClickListener() {
@@ -32,10 +52,12 @@ public class HT_CallBookList extends Activity {
         });
 
         Intent getIntent = getIntent();
-        String place = getIntent.getStringExtra("nameOfArea");
-        place.replaceAll("", " ");
-        area = findViewById(R.id.areaName_tv);
-        area.setText(place);
+
+        String area = getIntent.getStringExtra("nameOfArea");
+        String city = getIntent.getStringExtra("nameOfCity");
+        city.replaceAll("", " ");
+        areaTv = findViewById(R.id.areaName_tv);
+        areaTv.setText(area);
 
         adapter = new HT_ListViewAdapter();
         books_lv = findViewById(R.id.books_lv);
@@ -63,18 +85,18 @@ public class HT_CallBookList extends Activity {
 //                    Toast.makeText(BT_CreateActivity.this, "다운로드 실패", Toast.LENGTH_SHORT).show();
 //                }});
 
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.cover_spring), "Book1", "수원", "AAA", "2020/03/15");
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.cover_autumn), "Book2", "서울", "BBB", "2020/02/21");
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.cover_summer), "Book3", "고양", "CCC", "2020/01/04");
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.cover_winter), "Book4", "광명", "DDD", "2019/12/23");
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.cover_spring), "Book5", "수원", "AAA", "2020/03/15");
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.cover_autumn), "Book6", "서울", "BBB", "2020/02/21");
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.cover_summer), "Book7", "고양", "CCC", "2020/01/04");
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.cover_winter), "Book8", "광명", "DDD", "2019/12/23");
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.cover_spring), "Book9", "수원", "AAA", "2020/03/15");
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.cover_autumn), "Book10", "서울", "BBB", "2020/02/21");
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.cover_summer), "Book11", "고양", "CCC", "2020/01/04");
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.cover_winter), "Book12", "광명", "DDD", "2019/12/23");
+        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.bookcoverimage1), "Book1", "수원", "AAA", "2020/03/15");
+        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.bookcoverimage2), "Book2", "서울", "BBB", "2020/02/21");
+        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.bookcoverimage3), "Book3", "고양", "CCC", "2020/01/04");
+        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.bookcoverimage4), "Book4", "광명", "DDD", "2019/12/23");
+        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.bookcoverimage1), "Book5", "수원", "AAA", "2020/03/15");
+        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.bookcoverimage2), "Book6", "서울", "BBB", "2020/02/21");
+        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.bookcoverimage3), "Book7", "고양", "CCC", "2020/01/04");
+        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.bookcoverimage4), "Book8", "광명", "DDD", "2019/12/23");
+        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.bookcoverimage1), "Book9", "수원", "AAA", "2020/03/15");
+        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.bookcoverimage2), "Book10", "서울", "BBB", "2020/02/21");
+        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.bookcoverimage3), "Book11", "고양", "CCC", "2020/01/04");
+        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.bookcoverimage4), "Book12", "광명", "DDD", "2019/12/23");
 
         books_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

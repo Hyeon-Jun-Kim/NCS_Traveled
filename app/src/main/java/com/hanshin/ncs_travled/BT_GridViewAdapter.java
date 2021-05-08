@@ -1,5 +1,6 @@
 package com.hanshin.ncs_travled;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -12,17 +13,20 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 
 import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BT_GridViewAdapter extends BaseAdapter {
+public class BT_GridViewAdapter extends BaseAdapter  {
 
     Context context;
     ArrayList<Uri> imageArrayList; // 갤러리에서 가져온 이미지 경로를 저장한 리스트
@@ -36,11 +40,10 @@ public class BT_GridViewAdapter extends BaseAdapter {
         imageArrayList = imageList;
         videoArrayList = videoList;
         seeArrayList = seeList;
+
+
     }
 
-    public BT_GridViewAdapter(MainActivity M, ArrayList<Uri> imageList) {
-        seeArrayList = imageList;
-    }
 
     @Override
     public int getCount() {
@@ -60,13 +63,14 @@ public class BT_GridViewAdapter extends BaseAdapter {
         final int pos = position;
         final Context context = parent.getContext();
 
-
         // "listview_item" Layout을 inflate하여 convertView 참조 획득.
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.plus, parent, false);
         }
         ImageView image = convertView.findViewById(R.id.plus1);
+
+
 
         if(String.valueOf(seeArrayList.get(position)).contains("video")){
             image.setImageResource(R.drawable.video);
@@ -75,17 +79,7 @@ public class BT_GridViewAdapter extends BaseAdapter {
         }
 
         image.setScaleType(ImageView.ScaleType.FIT_XY);
-
-        image.setPadding(5,5,5,5);
-
-        //이미지뷰 클릭할 때 이벤트 작성
-        convertView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context.getApplicationContext(),"버튼테스트",Toast.LENGTH_SHORT).show();
-
-            }
-        });
+        image.setPadding(3,5,3,5);
 
         return  convertView;
     }
@@ -96,35 +90,35 @@ public class BT_GridViewAdapter extends BaseAdapter {
         if(type == 1){
             //1번일 경우 이미지를 리스트에 추가
             imageArrayList = list;
-        }
-        else if(type == 2){
+        } else if(type == 2){
             //2번일 경우 비디오를 리스트에 추가
             videoArrayList = list;
-        }
-        else if(type == 3){
+        } else if(type == 3){
             seeArrayList = list;
         }
 
     }
-    public void delete(){
+    public void delete() {
         int i = seeArrayList.size();
-        //삭제할 페이지가 있을 경우에만 삭제하도록 조건문 설정.
-        if(i >0){
-            if(String.valueOf(seeArrayList.get(i-1)).contains("image")){
+        //        //삭제할 페이지가 있을 경우에만 삭제하도록 조건문 설정.
+        if (i > 0) {
+            //이미지일 경우
+            if (String.valueOf(seeArrayList.get(i - 1)).contains("image")) {
                 int i1 = imageArrayList.size();
-                if(i1>0){
-                    imageArrayList.remove(i1-1);
+                if (i1 > 0) {
+                    imageArrayList.remove(i1 - 1);
                 }
-            }else if(String.valueOf(seeArrayList.get(i-1)).contains("video")){
+                seeArrayList.remove(i - 1);
+                //비디오일 경우
+            } else if (String.valueOf(seeArrayList.get(i - 1)).contains("video")) {
                 int i1 = videoArrayList.size();
-                if(i1>0){
-                    videoArrayList.remove(i1-1);
+                if (i1 > 0) {
+                    videoArrayList.remove(i1 - 1);
                 }
+                seeArrayList.remove(i - 1);
             }
-           seeArrayList.remove(i-1);
         }
+
+
     }
-
-
-
 }

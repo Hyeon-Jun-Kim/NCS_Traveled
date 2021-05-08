@@ -1,6 +1,7 @@
 package com.hanshin.ncs_travled;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +12,9 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+
 public class CT_Activity extends Activity {
 
     CT_Adapter listAdapter;
@@ -18,11 +22,53 @@ public class CT_Activity extends Activity {
     CT_recyclerAdapter recyclerAdapter;
     ListView listview;
     Button writeBtn;
+    //구글로그인 회원정보
+    String loginName ="";
+    String loginEmail = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ct_list);
+
+        Button HomeBtn = findViewById(R.id.HomeBtn);
+        Button BookBtn = findViewById(R.id.BookBtn);
+        Button CommunityBtn = findViewById(R.id.CommunityBtn);
+
+        HomeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), HT_Activity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        BookBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), BT_Activity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        CommunityBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), CT_Activity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        //로그인한 회원정보를 가져오는 변수
+        GoogleSignInAccount signInAccount = GoogleSignIn.getLastSignedInAccount(this);
+        if(signInAccount != null){
+            //회원정보 이름
+            loginName = signInAccount.getDisplayName();
+            //회원정보 이메일
+            loginEmail = signInAccount.getEmail();
+        }
 
         ///////////// 관리자 게시판
         init();
@@ -68,7 +114,7 @@ public class CT_Activity extends Activity {
         recyclerAdapter.addItem(recyclerItem);
         recyclerItem = new CT_recyclerItem(R.drawable.jeju3,"list3","2020/02/12");
         recyclerAdapter.addItem(recyclerItem);
-        recyclerItem = new CT_recyclerItem(R.drawable.cover_winter,"list4","2020/02/12");
+        recyclerItem = new CT_recyclerItem(R.drawable.jeju1,"list4","2020/02/12");
         recyclerAdapter.addItem(recyclerItem);
     }
 
